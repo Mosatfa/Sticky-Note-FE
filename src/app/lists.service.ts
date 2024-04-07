@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class ListsService {
-  baseUrl: string = 'https://sticky-note-lilac.vercel.app/list'
+  baseUrl: string = 'https://api-sticky-note.vercel.app/list'
 
   constructor(private _HttpClient:HttpClient) { }
 

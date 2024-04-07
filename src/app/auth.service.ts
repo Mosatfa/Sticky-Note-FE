@@ -8,7 +8,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl: string = "https://sticky-note-lilac.vercel.app/auth"
+  baseUrl: string = "https://api-sticky-note.vercel.app/auth"
   isAuthenticated: any = new BehaviorSubject(null)
   
   constructor(private _HttpClient: HttpClient, private _Router: Router) {
