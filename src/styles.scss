@@ -1,1 +1,105 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+// page login and signUp
+.input-error {
+    border-color: red !important;
+}
+
+.header-form {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.social {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.social::before {
+    content: "";
+    height: 1px;
+    width: 80%;
+    background-color: #CDCFD0;
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+}
+
+.btn-social {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #CDCFD0;
+    transition: 0.3s;
+}
+
+.btn-social:hover {
+    border: 1px solid #CDCFD0;
+    opacity: 0.8;
+}
+
+.form-group .box-input {
+    margin-bottom: 20px;
+}
+
+.form-group .form-control,
+.form-group .form-control {
+    box-shadow: none;
+    color: #72777A;
+    border-color: #CDCFD0;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translate(-50%, -50%);
+    color: #72777A;
+}
+
+.eye-icon i {
+    cursor: pointer;
+}
+
+.box-account {
+    font-size: 14px;
+}
+
+.box-account a {
+    color: #127FBF;
+    font-weight: bold;
+}
+
+.login-form,
+.signUp-form,
+.newPass-form,
+.reset-form {
+    width: 40%;
+}
+
+@media (max-width: 767px) {
+    .shadow-sm-none {
+        box-shadow: none !important;
+    }
+}
+
+@media (max-width:991px) {
+
+    .login-form,
+    .signUp-form,
+    .newPass-form,
+    .reset-form {
+        width: 100%;
+    }
+}
+

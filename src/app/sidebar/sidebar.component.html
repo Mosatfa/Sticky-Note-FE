@@ -1,0 +1,71 @@
+<div class="sidnav min-vh-100" [ngClass]="{'sidnav-collapsed': isCollapsed}">
+    <div class="header-box">
+        <h2>Menu</h2>
+    </div>
+    <!-- search -->
+    <div class="search-box mb-4 position-relative">
+        <input class="form-control form-control-sm w-100 " type="text" placeholder="Search" [(ngModel)]="term">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <!-- lists -->
+    <div class="lists-box">
+        <h3>LISTS</h3>
+        <ul class="lists list-unstyled m-0 ms-2">
+            <li *ngFor="let list of lists|search : term" class="position-relative">
+                <div>
+                    <a *ngIf="!list.showInput" class="d-flex align-items-center" [routerLink]="['/home',list._id]"
+                        routerLinkActive="active">
+                        <span [style.background-color]="list.color" class="radnom-color"></span>
+                        <p class="m-0">{{list.listName}} </p>
+                        <i *ngIf="list.isloading" class="fa-solid fa-spinner fa-spin ms-4"></i>
+                    </a>
+                    <div *ngIf="!isFieldBLocked" class="icon-box d-none">
+                        <div *ngIf="!list.isloading">
+                            <i (click)="openInput(list)" class="fa-solid fa-pen me-2"></i>
+                            <i (click)="deleteList(list)" class="fa-solid fa-trash-can"></i>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="list.showInput" class="input-list-box position-relative my-2">
+                    <input class="form-control form-control-sm shadow-none text-capitalize" type="text"
+                        [(ngModel)]="newNameList">
+                    <div class="icon-input">
+                        <div *ngIf="!isloading">
+                            <i (click)="saveAndUpdateList(list._id)" class="fa-solid fa-check me-2"></i>
+                            <i (click)="closeInput(list)" class="fa-solid fa-xmark"></i>
+                        </div>
+                        <div *ngIf="isloading" class="loading">
+                            <i class="fa-solid fa-spinner fa-spin "></i>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+
+
+        <!-- add list -->
+        <div>
+            <button *ngIf="!isVisibility" (click)="openInputList()" class="btn ps-2 d-flex align-items-center">
+                <i class="fa-solid fa-plus small me-2"></i>
+                <span>Add New List</span>
+            </button>
+            <div *ngIf="isVisibility" class="input-list-box position-relative">
+                <input class="form-control form-control-sm shadow-none" type="text" placeholder="New List"
+                    [(ngModel)]="listName">
+                <div class="icon-input">
+                    <i (click)="createList()" class="fa-solid fa-check me-2"></i>
+                    <i (click)="closeInputList()" class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <p *ngIf="errMessage" class="text-danger m-0 mt-2">Please enter a list name</p>
+        </div>
+    </div>
+
+
+    <!-- button signOut-->
+    <div class="sginOut-box position-absolute">
+        <button (click)="logOut()" class="btn text-danger"><i class="fa-solid fa-right-from-bracket me-2"></i>
+            <span>Sign Out</span></button>
+    </div>
+</div>

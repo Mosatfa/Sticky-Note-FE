@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="d-flex align-items-center min-vh-100 w-100">
+        <div class="signUp-form shadow-sm-none m-auto shadow rounded-2 p-4">
+            <div *ngIf="!checked">
+                <h2 class="header-form text-center">Create your account</h2>
+                <!-- <div class="social">
+                    <button class="btn btn-social rounded-2 w-100"><img src="../../assets/google.png" class="me-2"
+                            alt="google-icon"><span>Continue with Google</span></button>
+                </div> -->
+                <form (ngSubmit)="signUpData()" [formGroup]="signUpForm" class="form-group">
+                    <div class="box-input">
+                        <input formControlName="userName" [ngClass]="{'input-error': signUpForm.get('userName')?.errors && signUpForm.get('userName')?.touched}" class="form-control" type="text" placeholder="User Name">
+                        <div *ngIf="signUpForm.get('userName')?.errors && signUpForm.get('userName')?.touched">
+                            <p *ngIf="signUpForm.get('userName')?.getError('required')" class="text-danger m-0 mt-1">
+                                UserName is Required</p>
+                        </div>
+                    </div>
+                    <div class="box-input">
+                        <input formControlName="email" [ngClass]="{'input-error': signUpForm.get('email')?.errors && signUpForm.get('email')?.touched}" class="form-control" type="email" placeholder="Email">
+                        <div *ngIf="signUpForm.get('email')?.errors && signUpForm.get('email')?.touched">
+                            <p *ngIf="signUpForm.get('email')?.getError('required')" class="text-danger m-0 mt-1">
+                                Email is Required</p>
+                            <p *ngIf="signUpForm.get('email')?.getError('email')" class="text-danger m-0 mt-1">
+                                Email format invalid</p>
+                        </div>
+                        <p class="text-danger my-1">{{errMessage}}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 box-input">
+                            <div class="position-relative ">
+                                <input formControlName="password"  [ngClass]="{'input-error': signUpForm.get('password')?.errors && signUpForm.get('password')?.touched}" class="form-control"
+                                    type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password">
+                                <div class="eye-icon">
+                                    <i *ngIf="!showPassword" (click)="togglePasswordVisibility()"
+                                        class="fa-regular fa-eye "></i>
+                                    <i *ngIf="showPassword" (click)="togglePasswordVisibility()"
+                                        class="fa-regular fa-eye-slash"></i>
+                                </div>
+                            </div>
+                            <div *ngIf="signUpForm.get('password')?.errors && signUpForm.get('password')?.touched || signUpForm.get('password')?.dirty">
+                                <p *ngIf="signUpForm.get('password')?.getError('required')" class="text-danger m-0 mt-1">
+                                    Password is Required</p>
+                                <p *ngIf="signUpForm.get('password')?.getError('pattern')" class="text-danger m-0 mt-1">
+                                    It must contain at least one number (0-9) & least one uppercase letter (A-Z) & least 8 characters in length.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 box-input">
+                            <input formControlName="cPassword" [ngClass]="{'input-error': signUpForm.get('cPassword')?.errors && signUpForm.get('cPassword')?.touched}"  class="form-control"
+                                type="{{ showPassword ? 'text' : 'password' }}" placeholder="Confirm">
+                            <div *ngIf="signUpForm.get('cPassword')?.errors && signUpForm.get('cPassword')?.touched || signUpForm.get('cPassword')?.dirty">
+                                <p *ngIf="signUpForm.get('cPassword')?.getError('required')" class="text-danger m-0 mt-1">
+                                    Confirm Password is Required</p>
+                                <p *ngIf="signUpForm.get('cPassword')?.getError('pattern')" class="text-danger m-0 mt-1">
+                                    It must contain at least one number (0-9) & least one uppercase letter (A-Z) & least 8 characters in length.</p>
+                            </div>
+                            <p class="text-danger my-1">{{errConfirmPassword ? "Confirm password not match password" : ""}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-dark w-100"><span *ngIf="!isLoading">Sign Up</span><span *ngIf="isLoading"><i
+                            class="fa-solid fa-spinner fa-spin"></i></span></button>
+                    </div>
+                </form>
+    
+                <div class="box-account d-flex mt-3">
+                    <p>Already have an account?</p>
+                    <a routerLink="/login" class="ms-1 text-decoration-none">Login</a>
+                </div>
+            </div>
+            <div *ngIf="checked">
+                <h2 class="mb-3 text-success">success</h2>
+                <p class="mb-3" style="margin-left: 0px !important;">Please check your email first to confirm your email!</p>
+                <div class="d-flex justify-content-end">
+                    <a routerLink="/login" class="btn btn-dark text-white text-decoration-none">Login <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

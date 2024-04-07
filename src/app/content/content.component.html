@@ -1,0 +1,95 @@
+<div class="content" [ngClass]="{'content-collapsed': isCollapsed}">
+    <div class="container-fluid px-md-5 pt-4">
+        <div *ngIf="!isLoading" class="row gy-4">
+            <div *ngFor="let note of notes" class="col-md-3 col-sm-6">
+                <div [style.background-color]="note.color" class="note p-3">
+                    <div class="title mb-2 position-relative">
+                        <h2>{{note.title}}</h2>
+                        <div class="icon-box">
+                            <i (click)="setValue(note)" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                class="fa-solid fa-pen me-2"></i>
+                            <i (click)="deleteNote(note._id)" class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="description h-100" [innerHTML]="note.description|newLine">
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+            <div class="col-md-3 col-sm-6">
+                <button type="button" (click)="reset()"
+                    class="btn border-0 note p-3 w-100 d-flex justify-content-center align-items-center"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" [style.background-color]="'#EBEBEB'">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="isLoading" class="mt-5 d-flex justify-content-center">
+            <i class="fa-solid fa-spinner fa-spin fa-2xl"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center vh-100 my-0 ">
+        <div class="modal-content">
+            <form (ngSubmit)="save()" [formGroup]="noteForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pb-0">
+                    <div class="mb-3">
+                        <label for="FormControlInput1" class="form-label">Title</label>
+                        <input formControlName="title" type="text" class="form-control shadow-none"
+                            id="FormControlInput1">
+                        <div
+                            *ngIf="noteForm.get('title')?.errors && noteForm.get('title')?.touched || noteForm.get('title')?.dirty ">
+                            <p *ngIf="noteForm.get('title')?.getError('required')" class="m-0 mt-1 text-danger">title is
+                                required</p>
+                            <p *ngIf="noteForm.get('title')?.getError('maxlength')" class="m-0 mt-1 text-danger">The
+                                number of letters must not exceed 150</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="FormControlTextarea1" class="form-label">description</label>
+                        <textarea formControlName="description" class="form-control shadow-none"
+                            id="FormControlTextarea1" rows="6"></textarea>
+                        <div
+                            *ngIf="noteForm.get('description')?.errors && noteForm.get('description')?.touched || noteForm.get('description')?.dirty ">
+                            <p *ngIf="noteForm.get('description')?.getError('required')" class="m-0 mt-1 text-danger">
+                                description is required</p>
+                            <p *ngIf="noteForm.get('description')?.getError('maxlength')" class="m-0 mt-1 text-danger">
+                                The number of letters must not exceed 1500</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="radio-group d-flex justify-content-center align-items-center py-3">
+                    <label class="radio" [style.background-color]="'#FFD4A9'">
+                        <input (click)="selectColorInput('#FFD4A9')" value="#FFD4A9" formControlName="color"
+                            type="radio" checked>
+                    </label>
+                    <label class="radio" [style.background-color]="'#D2E9EE'">
+                        <input (click)="selectColorInput('#D2E9EE')" value="#D2E9EE" formControlName="color"
+                            type="radio">
+                    </label>
+                    <label class="radio" [style.background-color]="'#FDF1B5'">
+                        <input (click)="selectColorInput('#FDF1B5')" value="#FDF1B5" formControlName="color"
+                            type="radio">
+                    </label>
+                    <label class="radio" [style.background-color]="'#FFD9DC'">
+                        <input (click)="selectColorInput('#FFD9DC')" value="#FFD9DC" formControlName="color"
+                            type="radio">
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <label class="select-color me-auto" [style.background-color]="selectColor"></label>
+                    <button type="submit" class="btn btn-dark px-5" data-bs-dismiss="modal">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.navbar {
+    box-shadow: 0 0 10px #ddd;
+    h1 {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 10px 0px;
+    }
+}
+
+@media (min-width : 1200px) {
+    .fa-bars-staggered {
+        display: none;
+    }
+}

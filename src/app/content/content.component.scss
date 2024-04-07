@@ -1,0 +1,104 @@
+.content {
+    & {
+        position: absolute;
+        left: 250px;
+        width: calc(100% - 250px);
+        padding: 74px 0px 16px;
+        background-color: #F1F5F9;
+        min-height: 100vh;
+        transition: all 0.5s ease;
+    }
+    .note {
+        background-color: #FFD4A9;
+        min-height: 280px;
+        max-height: 280px;
+        overflow-x: auto;   
+        overflow-wrap: break-word;
+        .title {
+            h2 {
+                font-size: 24px;
+                font-weight: bold;
+                text-transform: capitalize;
+            }
+            .icon-box {
+                position: absolute;
+                top: -5px;
+                right: 0px;
+                opacity: 0;
+                font-size: 20px;
+                transition: 0.3s;
+                cursor: pointer;
+                .fa-pen{
+                    font-size: 16px !important;
+                }
+            }
+        }
+        &:hover .icon-box{
+            opacity: 1 !important;
+        }
+    }
+    button {
+        i {
+            font-size: 46px !important;
+        }
+    }
+}
+
+
+#FormControlTextarea1 {
+    resize: none;
+}
+
+.radio-group {
+    .radio {
+        height: 24px;
+        width: 24px;
+        margin-right: 16px;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    input[type="radio"] {
+        display: none;
+    }
+}
+.select-color {
+    height: 24px;
+    width: 24px;
+    margin-right: 16px;
+    border-radius: 50%;
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+    border-radius: 50%;
+    opacity: 0;
+    display: none;
+}
+  
+@media (max-width: 767px) {
+    .container-fluid {
+        padding: 0px 24px;
+    }
+}
+
+@media (max-width : 1199px) {
+    .content {
+        left: 0px;
+        width: 100%
+    }
+
+    .content-collapsed {
+        left: 0px;
+        width: 100%
+    }
+}
+
+// @media (min-width : 1200px) {
+//     .content-collapsed {
+//         left: 250px;
+//         width: 100%
+//     }
+// }
