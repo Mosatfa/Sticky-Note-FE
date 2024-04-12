@@ -16,7 +16,7 @@
                 </div>
             </div>
             <!-- Button trigger modal -->
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6 btn-xl">
                 <button type="button" (click)="reset()"
                     class="btn border-0 note p-3 w-100 d-flex justify-content-center align-items-center"
                     data-bs-toggle="modal" data-bs-target="#exampleModal" [style.background-color]="'#EBEBEB'">
@@ -31,7 +31,8 @@
 </div>
 
 <!-- Modal -->
-<div id="modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog d-flex align-items-center vh-100 my-0 ">
         <div class="modal-content">
             <form (ngSubmit)="save()" [formGroup]="noteForm">
@@ -92,4 +93,11 @@
             </form>
         </div>
     </div>
+</div>
+
+
+<div>
+    <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fa-solid fa-plus"></i>
+    </button>
 </div>

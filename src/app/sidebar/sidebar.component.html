@@ -11,7 +11,7 @@
     <div class="lists-box">
         <h3>LISTS</h3>
         <ul class="lists list-unstyled m-0 ms-2">
-            <li *ngFor="let list of lists|search : term" class="position-relative">
+            <li *ngFor="let list of lists | search : term" class="position-relative">
                 <div>
                     <a *ngIf="!list.showInput" class="d-flex align-items-center" [routerLink]="['/home',list._id]"
                         routerLinkActive="active">

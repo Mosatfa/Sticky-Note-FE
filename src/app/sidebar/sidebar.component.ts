@@ -77,7 +77,7 @@ export class SidebarComponent implements OnInit {
     this._ListsService.postList(list).subscribe({
       next: (response) => {
         if (response.message == 'Done') {
-          this.displayLists()
+          this.displayLists()          
           this.listName = ''
           this.isVisibility = false
           this.errMessage = false
@@ -111,7 +111,8 @@ export class SidebarComponent implements OnInit {
       next: (res) => {
         if (res.message == 'Done') {
           this._Router.navigate(['/home'])
-          this.displayLists()
+          // this.displayLists()
+          this.lists = this.lists.filter(l => l._id != list._id)
           list.isloading = false
         }
       }

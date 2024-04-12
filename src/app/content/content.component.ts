@@ -70,8 +70,9 @@ export class ContentComponent implements OnInit {
       this._NoteService.postNote(this.listId, this.noteForm.value).subscribe({
         next: (res) => {
           if (res.message = 'Done') {
-            this.displayNote(this.listId)
+            this.notes.push(res.note)
             this.noteForm.reset()
+            // this.displayNote(this.listId)
           }
         }
       })
@@ -84,7 +85,9 @@ export class ContentComponent implements OnInit {
       this._NoteService.updateNote(this.noteId, this.noteForm.value).subscribe({
         next: (res) => {
           if (res.message = 'Done') {
-            this.displayNote(this.listId)
+            // this.displayNote(this.listId)
+            this.notes.push(this.noteForm.value)
+            this.notes = this.notes.filter(note => note._id != this.noteId)
             this.noteForm.reset()
           }
         }
@@ -112,14 +115,15 @@ export class ContentComponent implements OnInit {
     this._NoteService.deleteNote(id).subscribe({
       next: (res) => {
         if (res.message == 'Done') {
-          this.displayNote(this.listId)
+          // this.displayNote(this.listId)
+          this.notes = this.notes.filter(note => note._id != id)
         }
       }
     })
   }
 
 
-  constructor(private _NoteService: NoteService, private _ActivatedRoute: ActivatedRoute, private _NavbarTogglerService: NavbarTogglerService) { }
+  constructor(private _NoteService: NoteService, private _ActivatedRoute: ActivatedRoute, private _NavbarTogglerService: NavbarTogglerService, private _Router: Router) { }
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe(params => {

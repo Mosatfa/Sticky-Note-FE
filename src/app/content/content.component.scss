@@ -78,9 +78,38 @@
     display: none;
 }
   
+.btn-add {
+    
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    background-color: black;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: transparent;
+
+    i{
+        color: #fff;
+    }
+
+}
 @media (max-width: 767px) {
     .container-fluid {
         padding: 0px 24px;
+    }
+
+    .btn-add {
+        display: flex !important;
+
+    }
+
+    .btn-xl {
+        display: none !important;
     }
 }
 
