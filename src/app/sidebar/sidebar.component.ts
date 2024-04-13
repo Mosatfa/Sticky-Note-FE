@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit {
     })
   }
 
-  isSelected(){
+  isSelected() {
     this.isCollapsed = false
   }
   // open input update list
@@ -81,10 +81,11 @@ export class SidebarComponent implements OnInit {
     this._ListsService.postList(list).subscribe({
       next: (response) => {
         if (response.message == 'Done') {
-          this.displayLists()          
+          this.displayLists()
           this.listName = ''
           this.isVisibility = false
           this.errMessage = false
+          this.isCollapsed = false
           this._Router.navigate(['/home', response.list._id])
         }
       }
