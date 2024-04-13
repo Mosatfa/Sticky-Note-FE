@@ -32,6 +32,10 @@ export class SidebarComponent implements OnInit {
       }
     })
   }
+
+  isSelected(){
+    this.isCollapsed = false
+  }
   // open input update list
   openInput(list: List) {
     list.showInput = true;
